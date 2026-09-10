@@ -20,17 +20,8 @@ section{padding:clamp(76px,9vw,112px) 0}.hero{padding:0;border-bottom:1px solid 
 .hero-chart{position:relative;min-height:430px;height:100%}.contours{position:absolute;inset:0;width:100%;height:100%;opacity:.55}.contours path{fill:none;stroke:var(--red);stroke-width:1}.drift{animation:drift 34s linear infinite}.drift2{animation:drift 52s linear infinite reverse}@keyframes drift{to{transform:translateX(-120px)}}.plate{position:absolute;inset:0;display:grid;place-items:center}.ring{width:min(360px,70%);aspect-ratio:1;border:1px solid rgba(138,31,50,.28);border-radius:50%;display:grid;place-items:center;position:relative}.ring:before{content:"";position:absolute;inset:34px;border:1px solid rgba(138,31,50,.28);border-radius:50%}.ring span{position:relative;color:var(--red);font:italic 1rem/1.5 var(--serif);text-align:center}.dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--red);transform:translate(-50%,-50%);opacity:0;pointer-events:none;transition:opacity .2s}
 .ticker{background:var(--ink);color:var(--bg);overflow:hidden;white-space:nowrap}.track{display:flex;width:max-content;animation:marquee 36s linear infinite;padding:14px 0}@keyframes marquee{to{transform:translateX(-50%)}}.ticker:hover .track{animation-play-state:paused}.ticker span{padding:0 26px;border-right:1px solid rgba(241,236,225,.2);font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}.ticker .accent{color:var(--sand)}
 .head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(25px,5vw,70px);align-items:end;margin-bottom:44px}.head h2,h2{font:500 clamp(1.9rem,3.4vw,2.7rem)/1.12 var(--serif);margin:0}.head p{max-width:46ch;color:var(--soft);margin:0}
-.story{background:var(--bg2);border-block:1px solid var(--line)}.story-grid,.visit-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}.story-visual{aspect-ratio:4/5}.shot{position:relative;overflow:hidden;background:radial-gradient(120% 100% at 10% 0,rgba(138,31,50,.2),transparent 55%),linear-gradient(160deg,#1c1815,#121010);color:var(--bg);border:1px solid rgba(241,236,225,.14);transition:transform .25s,border-color .25s}.shot:hover{border-color:var(--red)}.shot-inner{position:absolute;inset:26px;display:flex;flex-direction:column;justify-content:flex-end}.shot-fig{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:10px}.shot-cap{font:italic 1.05rem/1.4 var(--serif);max-width:30ch}.shot-meta{display:flex;gap:8px;margin-top:18px}.tag{border:1px solid rgba(169,136,90,.5);color:var(--sand);padding:4px 8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em}.grain{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(#fff .6px,transparent .6px);background-size:3px 3px}
-.shot-inner {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url("interior.png");
-
-    background-size: fit;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-  .story-copy p{max-width:56ch;color:var(--soft);font-size:1.02rem;line-height:1.75;margin:0 0 20px}.story-copy strong{color:var(--ink)}.credit{display:flex;gap:18px;align-items:center;border-top:1px solid var(--line);padding-top:25px;margin-top:32px}.credit .name{font:italic 1.1rem var(--serif)}.credit .role{font-size:.8rem;color:var(--soft)}
+.story{background:var(--bg2);border-block:1px solid var(--line)}.story-grid,.visit-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}.story-visual{aspect-ratio:4/5}.shot{position:relative;overflow:hidden;background:radial-gradient(120% 100% at 10% 0,rgba(138,31,50,.2),transparent 55%),linear-gradient(160deg,#1c1815,#121010);color:var(--bg);border:1px solid rgba(241,236,225,.14);transition:transform .25s,border-color .25s}.shot:hover{border-color:var(--red)}.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease,transform .6s ease}.shot.loaded img{opacity:1}.shot.loaded:hover img{transform:scale(1.045)}.shot.failed img{display:none}.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,12,11,0) 34%,rgba(11,9,8,.86) 100%);opacity:0;transition:opacity .5s ease}.shot.loaded .scrim{opacity:1}.shot-inner{position:absolute;inset:26px;display:flex;flex-direction:column;justify-content:flex-end}.shot-fig{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);margin-bottom:10px}.shot-cap{font:italic 1.05rem/1.4 var(--serif);max-width:30ch}.shot-meta{display:flex;gap:8px;margin-top:18px}.tag{border:1px solid rgba(169,136,90,.5);color:var(--sand);padding:4px 8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em}.grain{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(#fff .6px,transparent .6px);background-size:3px 3px}
+.story-copy p{max-width:56ch;color:var(--soft);font-size:1.02rem;line-height:1.75;margin:0 0 20px}.story-copy strong{color:var(--ink)}.credit{display:flex;gap:18px;align-items:center;border-top:1px solid var(--line);padding-top:25px;margin-top:32px}.credit .name{font:italic 1.1rem var(--serif)}.credit .role{font-size:.8rem;color:var(--soft)}
 .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:40px}.tab{border:0;background:none;padding:12px 0;cursor:pointer;color:var(--soft);font:600 .75rem var(--sans);letter-spacing:.1em;text-transform:uppercase;position:relative}.tab:after{content:"";position:absolute;bottom:-1px;left:0;width:100%;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.2s}.tab.active{color:var(--ink)}.tab.active:after{transform:scaleX(1)}.panel{display:none}.panel.active{display:block}.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 70px}.group{margin-bottom:38px}.group h3{font:italic 1.2rem var(--serif);font-weight:400;color:var(--red);margin:0 0 16px}.dish{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px dotted var(--line)}.dish:last-child{border:0}.dish .name{font-size:.95rem}.desc{display:block;color:var(--soft);font-size:.8rem;margin-top:2px}.spacer{flex:1;border-bottom:1px dotted var(--line);min-width:15px}.price{white-space:nowrap;font-size:.9rem}.note{border-top:1px solid var(--line);padding-top:18px;color:var(--soft);font-size:.8rem}
 .gallery{padding-top:0}.gallery-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:220px 220px;gap:14px}.gallery-grid .shot:first-child{grid-row:1/3}
 .journey{background:var(--ink);color:var(--bg)}.journey .label{color:var(--sand)}.journey .head p{color:rgba(241,236,225,.7)}.journey-grid{display:grid;grid-template-columns:1.2fr .9fr 1.4fr;border-top:1px solid rgba(241,236,225,.18)}.journey-col{padding:34px 32px 0 0;border-right:1px solid rgba(241,236,225,.18)}.journey-col+ .journey-col{padding-left:32px}.journey-col:last-child{border:0}.num{display:block;color:var(--sand);font:italic .9rem var(--serif);margin-bottom:12px}.journey h4{font:500 1.25rem var(--serif);margin:0 0 12px}.journey p{color:rgba(241,236,225,.72);font-size:.9rem;line-height:1.65;margin:0}
@@ -38,6 +29,38 @@ section{padding:clamp(76px,9vw,112px) 0}.hero{padding:0;border-bottom:1px solid 
 footer{padding:52px 0 35px}.foot{display:flex;justify-content:space-between;gap:25px;align-items:end;padding-bottom:28px}.social{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}.social a{text-decoration:none;font-size:.8rem;border-bottom:1px solid var(--line)}.bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--soft);font-size:.72rem}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.22,1,.36,1)}.reveal.show{opacity:1;transform:none}
 .ripple{position:absolute;border-radius:50%;background:rgba(241,236,225,.4);transform:scale(0);animation:ripple .6s ease-out;pointer-events:none}@keyframes ripple{to{transform:scale(2.5);opacity:0}}
+
+/* rotating hero tagline — small nod to the original site's crossfading captions */
+.rotator{position:relative;display:inline-block;min-height:1.3em;vertical-align:top}
+.rotator i{position:absolute;left:0;top:0;white-space:nowrap;opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease;font-style:italic;color:var(--red)}
+.rotator i.on{position:relative;opacity:1;transform:none}
+.since{display:inline-flex;align-items:center;gap:8px;font:600 .68rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
+.since:before{content:"";width:22px;height:1px;background:var(--red)}
+
+/* FAQ accordion */
+.faq{max-width:820px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 2px;font:500 1.05rem var(--serif)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .plus{position:relative;width:18px;height:18px;flex:none;margin-top:3px}
+.faq-item summary .plus:before,.faq-item summary .plus:after{content:"";position:absolute;background:var(--ink);transition:transform .25s ease,opacity .25s ease}
+.faq-item summary .plus:before{left:0;top:50%;width:18px;height:1px;transform:translateY(-50%)}
+.faq-item summary .plus:after{top:0;left:50%;width:1px;height:18px;transform:translateX(-50%)}
+.faq-item[open] summary .plus:after{opacity:0}
+.faq-item[open] summary{color:var(--red)}
+.faq-item p{margin:0 0 22px;max-width:66ch;color:var(--soft);font-size:.95rem;line-height:1.65}
+
+/* mobile-only sticky call / reserve bar */
+.mobile-cta{display:none}
+@media(max-width:760px){
+  .mobile-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--ink);border-top:1px solid rgba(241,236,225,.16);padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));gap:10px}
+  .mobile-cta a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;font:600 .82rem var(--sans);padding:13px 10px;text-decoration:none;color:var(--bg);border:1px solid rgba(241,236,225,.3)}
+  .mobile-cta a.solid{background:var(--red);border-color:var(--red)}
+  .mobile-cta a:active{transform:scale(.96)}
+  body{padding-bottom:64px}
+}
+.btn:active,.shot:active{transform:scale(.985)}
 
 .links-modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;padding-top:max(20px,env(safe-area-inset-top));padding-bottom:max(20px,env(safe-area-inset-bottom));background:rgba(20,17,14,.55);backdrop-filter:blur(8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
 .links-modal.open{opacity:1;visibility:visible;pointer-events:auto}.links-card{position:relative;width:min(470px,100%);max-height:calc(100dvh - 40px);overflow:auto;background:var(--bg);color:var(--ink);padding:clamp(26px,7vw,38px);box-shadow:0 25px 80px rgba(0,0,0,.25);transform:translateY(18px) scale(.97);transition:.3s cubic-bezier(.22,1,.36,1);-webkit-overflow-scrolling:touch}
@@ -55,18 +78,18 @@ footer{padding:52px 0 35px}.foot{display:flex;justify-content:space-between;gap:
 <div id="tide"></div>
 <header><nav class="wrap nav">
 <a href="#top" class="wordmark">m<em>a</em>ré <small>social</small></a>
-<ul class="nav-links" id="nav"><li><a href="#story">Story</a></li><li><a href="#menu">Menu</a></li><li><a href="#journey">Cuisine</a></li><li><a href="#visit">Visit</a></li><li><a class="btn solid" href="#visit">Reserve</a></li></ul>
+<ul class="nav-links" id="nav"><li><a href="#story">Story</a></li><li><a href="#menu">Menu</a></li><li><a href="#journey">Cuisine</a></li><li><a href="#faq">FAQ</a></li><li><a href="#visit">Visit</a></li><li><a class="btn solid" href="#visit">Reserve</a></li></ul>
 <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav></header>
 <main id="top">
 <section class="hero"><div class="wrap hero-grid">
-<div class="hero-copy reveal"><span class="label">Taberna & Bar · Katameya Dunes, Cairo</span><h1>Dinner moves like <i>the tide.</i></h1><p class="lede">Small plates, Nikkei-style sushi, and a drinks list worth lingering over — served at The Westin Cairo Golf Resort & Spa.</p><div class="hero-actions"><a href="#visit" class="btn solid">Reserve a table</a><a href="#menu" class="btn">View the menu</a></div></div>
+<div class="hero-copy reveal"><span class="since">Since 2023</span><span class="label">Taberna & Bar · Katameya Dunes, Cairo</span><h1>Dinner moves like <i>the tide.</i></h1><p class="lede">Small plates, Nikkei-style sushi, and a drinks list worth lingering over — served at The Westin Cairo Golf Resort & Spa.</p><p class="lede rotator" id="rotator" style="min-height:1.7rem"><i class="on">A touch of Portuguese flair.</i><i>A touch of Portuguese elegance.</i><i>A little taste of heaven.</i></p><div class="hero-actions"><a href="#visit" class="btn solid">Reserve a table</a><a href="#menu" class="btn">View the menu</a></div></div>
 <div class="hero-chart" aria-hidden="true"><svg class="contours" viewBox="0 0 600 500" preserveAspectRatio="none"><path class="drift" d="M-50 60C100 20 250 100 400 60S700 20 850 60"/><path class="drift2" d="M-50 130C120 90 260 170 420 130S720 90 870 130"/><path class="drift" d="M-50 200C90 160 270 240 430 200S740 160 880 200"/><path class="drift2" d="M-50 270C130 230 250 310 410 270S730 230 860 270"/><path class="drift" d="M-50 340C100 300 260 380 420 340S730 300 870 340"/></svg><div class="plate"><div class="ring"><span>Josper prawns,<br>salmon tartare,<br>and the day's catch</span></div></div><div class="dot" id="dot"></div></div>
 </div></section>
 <div class="ticker"><div class="track"><span>Westin Cairo · Katameya Dunes</span><span class="accent">Dinner nightly</span><span>Smart casual</span><span>Reservations recommended</span><span>Westin Cairo · Katameya Dunes</span><span class="accent">Dinner nightly</span><span>Smart casual</span><span>Reservations recommended</span></div></div>
 
 <section class="story" id="story"><div class="wrap story-grid">
-<div class="shot story-visual reveal" data-tilt><div class="grain"></div><div class="shot-inner"><span class="shot-cap">Chef plating josper prawns, dining room in soft focus behind.</span><div class="shot-meta"><span class="tag"></span><span class="tag">Interior</span></div></div></div>
+<div class="shot story-visual reveal" data-tilt><img src="food.png" alt="Josper prawns plated table-side at Maré Social" loading="lazy" onload="this.closest('.shot').classList.add('loaded')" onerror="this.closest('.shot').classList.add('failed')"><div class="scrim"></div><div class="grain"></div><div class="shot-inner"><span class="shot-fig">Fig. 00</span><span class="shot-cap">Chef plating josper prawns, table-side.</span><div class="shot-meta"><span class="tag">4:5 · Portrait</span><span class="tag">Food</span></div></div></div>
 <div class="story-copy"><span class="label reveal">The idea</span><h2 class="reveal" style="margin:16px 0 26px;max-width:16ch">An intimate taberna, built for sharing.</h2><p class="reveal">Maré Social takes its name from the Portuguese word for tide — a rhythm that never sits still. <strong>Cold and hot tapas move across the table in waves</strong>, followed by mains, sushi, and dessert.</p><p class="reveal">The menu is guided by Henrique Sá Pessoa, translating refined technique into josper-grilled seafood, cured meats, and a Nikkei sushi counter. <strong>Iberian and Japanese references share one table.</strong></p><div class="credit reveal"><span class="name">Henrique Sá Pessoa</span><span class="role">Two-Michelin-starred chef · Culinary concept</span></div></div>
 </div></section>
 
@@ -78,11 +101,11 @@ footer{padding:52px 0 35px}.foot{display:flex;justify-content:space-between;gap:
 <div class="panel" id="panel-drinks"><div class="cols"><div class="group"><h3>Bar</h3><div class="dish"><span class="name">Single malt · Glenfiddich 12</span><span class="spacer"></span><span class="price">4000</span></div><div class="dish"><span class="name">Grey Goose vodka</span><span class="spacer"></span><span class="price">2800</span></div><div class="dish"><span class="name">Jameson</span><span class="spacer"></span><span class="price">1200</span></div></div><div class="group"><h3>Without alcohol</h3><div class="dish"><span class="name">Balancing beets <span class="desc">Beetroot, pineapple, carrot, ginger, basil</span></span><span class="spacer"></span><span class="price">400</span></div><div class="dish"><span class="name">Fresh mango juice</span><span class="spacer"></span><span class="price">280</span></div><div class="dish"><span class="name">Spanish latté</span><span class="spacer"></span><span class="price">280</span></div></div></div></div>
 </div></section>
 
-<section class="gallery" id="gallery"><div class="wrap"><div class="head reveal"><div><span class="label">The room</span><h2>Shot list for the studio.</h2></div><p>Placeholder frames for the dining room, kitchen, sushi counter, and bar.</p></div><div class="gallery-grid">
-<div class="shot reveal" data-tilt><div class="grain"></div><div class="shot-inner"><span class="shot-fig">01</span><span class="shot-cap">Dining room at dusk, low light over the tapas tables.</span><div class="shot-meta"><span class="tag">Interior</span></div></div></div>
-<div class="shot reveal" data-tilt><div class="grain"></div><div class="shot-inner"><span class="shot-fig">02</span><span class="shot-cap">Josper grill in motion, smoke over the coals.</span><div class="shot-meta"><span class="tag">Kitchen</span></div></div></div>
-<div class="shot reveal" data-tilt><div class="grain"></div><div class="shot-inner"><span class="shot-fig">03</span><span class="shot-cap">Sushi counter — nigiri and inspired rolls.</span><div class="shot-meta"><span class="tag">Food</span></div></div></div>
-<div class="shot reveal" data-tilt><div class="grain"></div><div class="shot-inner"><span class="shot-fig">04</span><span class="shot-cap">The bar, mid-service, bottles lit from below.</span><div class="shot-meta"><span class="tag">Bar</span></div></div></div>
+<section class="gallery" id="gallery"><div class="wrap"><div class="head reveal"><div><span class="label">The room</span><h2>A look inside.</h2></div><p>The dining room, the kitchen, the food, and the bar — as a guest sees them.</p></div><div class="gallery-grid">
+<div class="shot reveal" data-tilt><img src="interior.png" alt="Maré Social dining room" loading="lazy" onload="this.closest('.shot').classList.add('loaded')" onerror="this.closest('.shot').classList.add('failed')"><div class="scrim"></div><div class="grain"></div><div class="shot-inner"><span class="shot-fig">Fig. 01</span><span class="shot-cap">Dining room at dusk, low light over the tapas tables.</span><div class="shot-meta"><span class="tag">Interior</span></div></div></div>
+<div class="shot reveal" data-tilt><img src="kitchen.png" alt="Josper grill at Maré Social" loading="lazy" onload="this.closest('.shot').classList.add('loaded')" onerror="this.closest('.shot').classList.add('failed')"><div class="scrim"></div><div class="grain"></div><div class="shot-inner"><span class="shot-fig">Fig. 02</span><span class="shot-cap">Josper grill in motion, smoke over the coals.</span><div class="shot-meta"><span class="tag">Kitchen</span></div></div></div>
+<div class="shot reveal" data-tilt><img src="food.png" alt="Tapas and small plates at Maré Social" loading="lazy" onload="this.closest('.shot').classList.add('loaded')" onerror="this.closest('.shot').classList.add('failed')"><div class="scrim"></div><div class="grain"></div><div class="shot-inner"><span class="shot-fig">Fig. 03</span><span class="shot-cap">Tapas and small plates, ready to share.</span><div class="shot-meta"><span class="tag">Food</span></div></div></div>
+<div class="shot reveal" data-tilt><img src="bar.avif" alt="The bar at Maré Social" loading="lazy" onload="this.closest('.shot').classList.add('loaded')" onerror="this.closest('.shot').classList.add('failed')"><div class="scrim"></div><div class="grain"></div><div class="shot-inner"><span class="shot-fig">Fig. 04</span><span class="shot-cap">The bar, mid-service, bottles lit from below.</span><div class="shot-meta"><span class="tag">Bar</span></div></div></div>
 </div></div></section>
 
 <section class="journey" id="journey"><div class="wrap"><div class="head reveal"><div><span class="label">Where it comes from</span><h2>Two coastlines, one table.</h2></div><p>The menu follows a path from Portuguese cooking to the Nikkei counter.</p></div><div class="journey-grid">
@@ -91,10 +114,24 @@ footer{padding:52px 0 35px}.foot{display:flex;justify-content:space-between;gap:
 <div class="journey-col reveal"><span class="num">Nikkei</span><h4>Japanese-Peruvian influence</h4><p>Nigiri, sashimi, tiraditos, and crudos bring Japanese technique together with South American citrus and chili.</p></div>
 </div></div></section>
 
-<section class="visit" id="visit"><div class="wrap visit-grid"><div><span class="label reveal">Visit</span><h2 class="reveal" style="margin:16px 0 30px">Find us at the dunes.</h2><dl class="info reveal"><div><dt>Where</dt><dd>The Westin Cairo Golf Resort & Spa, Katameya Dunes, Cairo</dd></div><div><dt>Hours</dt><dd>Dinner served nightly, open until 1am</dd></div><div><dt>Dress code</dt><dd>Smart casual</dd></div><div><dt>Directions</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=30.003261,31.52115" target="_blank" rel="noopener">Open Google Maps</a></dd></div></dl></div>
-<div class="reserve reveal"><span class="label" style="color:var(--sand)">Reservations</span><h3>Stay for dinner. Stay for the evening.</h3><p>Booking ahead is recommended, especially Thursday through Saturday.</p><div class="actions"><a class="btn solid" href="https://www.morecravings.com/en/cairo/venues/mare-social" target="_blank" rel="noopener">Book a table</a></div></div></div></section>
+<section id="faq"><div class="wrap"><div class="head reveal"><div><span class="label">Good to know</span><h2>Questions, answered.</h2></div><p>The practical details, straight from the team.</p></div>
+<div class="faq reveal">
+<details class="faq-item" open><summary>Where is Maré Social located?<span class="plus"></span></summary><p>Road 90, New Cairo City, Katameya Dunes, Cairo, Egypt 11835 — inside The Westin Cairo Golf Resort &amp; Spa, with a terrace overlooking the golf course.</p></details>
+<details class="faq-item"><summary>What are the opening hours?<span class="plus"></span></summary><p>Daily from 2:00 PM to 1:00 AM — a late lunch, dinner, or evening drinks are all welcome.</p></details>
+<details class="faq-item"><summary>How do I make a reservation?<span class="plus"></span></summary><p>Call +20 2 2322 8090 or use the Reserve button above, which connects to our online booking system. We recommend booking ahead, especially on weekend evenings.</p></details>
+<details class="faq-item"><summary>Is there a dress code?<span class="plus"></span></summary><p>Smart casual. We ask guests to keep it upscale-casual — no beachwear, sportswear, or flip-flops.</p></details>
+<details class="faq-item"><summary>What kind of cuisine do you serve?<span class="plus"></span></summary><p>Portuguese cuisine with a modern twist, guided by two-Michelin-starred chef Henrique Sá Pessoa — seafood, shellfish, tapas, petiscos, bar-bites, and steak, with Spanish and Nikkei influences.</p></details>
+<details class="faq-item"><summary>Is there outdoor seating?<span class="plus"></span></summary><p>Yes — a terrace wraps the venue with views over the Katameya Dunes golf course, a favourite for guests who prefer dining al fresco.</p></details>
+<details class="faq-item"><summary>Can you accommodate dietary restrictions?<span class="plus"></span></summary><p>Yes. The menu marks dairy, gluten, vegetarian, shellfish, alcohol, and nuts — just let your server know about any allergy or requirement when ordering.</p></details>
+<details class="faq-item"><summary>Do you host private dining or events?<span class="plus"></span></summary><p>Yes — the dining room, bar &amp; lounge, tapas counter, and terrace can each be arranged for private gatherings. Reach us at +20 2 2322 8090 or wh.caiwi.mare.social@westin.com.</p></details>
+</div>
+</div></section>
+
+<section class="visit" id="visit"><div class="wrap visit-grid"><div><span class="label reveal">Visit</span><h2 class="reveal" style="margin:16px 0 30px">Find us at the dunes.</h2><dl class="info reveal"><div><dt>Where</dt><dd>Road 90, New Cairo City, Katameya Dunes, Cairo, Egypt 11835 — inside The Westin Cairo Golf Resort &amp; Spa</dd></div><div><dt>Hours</dt><dd>Daily, 2:00 PM – 1:00 AM</dd></div><div><dt>Dress code</dt><dd>Smart casual — no beachwear, sportswear, or flip-flops</dd></div><div><dt>The setting</dt><dd>An intimate dining room, a bar &amp; lounge, an open-kitchen tapas counter, and a terrace over the golf course</dd></div><div><dt>Directions</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=30.003261,31.52115" target="_blank" rel="noopener">Open Google Maps</a></dd></div></dl></div>
+<div class="reserve reveal"><span class="label" style="color:var(--sand)">Reservations</span><h3>Stay for dinner. Stay for the evening.</h3><p>Booking ahead is recommended, especially Thursday through Saturday.</p><div class="actions"><a class="btn solid" href="https://www.sevenrooms.com/reservations/maresocial" target="_blank" rel="noopener">Book a table</a><a class="btn on-dark" href="#links" data-links>All links</a></div></div></div></section>
 </main>
-<footer><div class="wrap"><div class="foot"><a href="#top" class="wordmark">m<em>a</em>ré <small>social</small></a><ul class="social"><li><a href="#links" data-links>Instagram</a></li><li><a href="#links" data-links>All links</a></li><li><a href="https://www.morecravings.com/en/cairo/venues/mare-social">More Cravings</a></li></ul></div><div class="bottom"><span>Westin Cairo · Katameya Dunes</span><span>Henrique Sá Pessoa · Culinary concept</span></div></div></footer>
+<footer><div class="wrap"><div class="foot"><a href="#top" class="wordmark">m<em>a</em>ré <small>social</small></a><ul class="social"><li><a href="https://www.instagram.com/mare_social/" target="_blank" rel="noopener">Instagram</a></li><li><a href="#links" data-links>All ways to reach us</a></li><li><a href="https://www.morecravings.com/en/cairo/venues/mare-social" target="_blank" rel="noopener">More Cravings</a></li></ul></div><div class="bottom"><span>Road 90, New Cairo City, Katameya Dunes, Cairo 11835</span><span>Henrique Sá Pessoa · Culinary concept</span></div></div></footer>
+<div class="mobile-cta"><a href="tel:+20223228090">Call</a><a href="https://www.sevenrooms.com/reservations/maresocial" target="_blank" rel="noopener" class="solid">Reserve a table</a></div>
 
 <div class="links-modal" id="linksModal" aria-hidden="true">
   <div class="links-backdrop" data-close-links></div>
@@ -104,11 +141,13 @@ footer{padding:52px 0 35px}.foot{display:flex;justify-content:space-between;gap:
     <h2 id="linksTitle">Stay in touch.</h2>
     <p>Reservations, socials and everything else in one place.</p>
     <div class="links-list">
-      <a href="https://www.instagram.com/maresocialcairo/" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
-      <a href="https://www.facebook.com/MareSocialCairo/" target="_blank" rel="noopener"><span>Facebook</span><span>↗</span></a>
-      <a href="https://www.morecravings.com/en/cairo/venues/mare-social" target="_blank" rel="noopener"><span>Book on More Cravings</span><span>↗</span></a>
+      <a href="https://www.instagram.com/mare_social/" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
+      <a href="https://www.facebook.com/MareSocialRestaurant" target="_blank" rel="noopener"><span>Facebook</span><span>↗</span></a>
+      <a href="https://www.sevenrooms.com/reservations/maresocial" target="_blank" rel="noopener"><span>Reserve a table</span><span>↗</span></a>
+      <a href="tel:+20223228090"><span>Call +20 2 2322 8090</span><span>↗</span></a>
+      <a href="mailto:wh.caiwi.mare.social@westin.com"><span>Email us</span><span>↗</span></a>
       <a href="https://www.google.com/maps/search/?api=1&query=30.003261,31.52115" target="_blank" rel="noopener"><span>Get directions</span><span>↗</span></a>
-      <a href="https://www.marriott.com/en-us/hotels/caixr-the-westin-cairo-golf-resort-and-spa-katameya-dunes/" target="_blank" rel="noopener"><span>Westin Cairo</span><span>↗</span></a>
+      <a href="https://www.maresocialrestaurant.com/" target="_blank" rel="noopener"><span>Official website</span><span>↗</span></a>
     </div>
     <div class="links-foot">Katameya Dunes · Cairo</div>
   </div>
@@ -132,6 +171,13 @@ if(!reduced&&'IntersectionObserver'in window){const io=new IntersectionObserver(
 $$('.btn').forEach(b=>b.onclick=e=>{const r=b.getBoundingClientRect(),s=Math.max(r.width,r.height);const x=document.createElement('i');x.className='ripple';x.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;b.append(x);setTimeout(()=>x.remove(),600)});
 if(matchMedia('(pointer:fine)').matches&&!reduced)$$('[data-tilt]').forEach(c=>{c.onmousemove=e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`};c.onmouseleave=()=>c.style.transform=''});
 const chart=$('.hero-chart'),dot=$('#dot');if(chart){chart.onmousemove=e=>{const r=chart.getBoundingClientRect();dot.style.left=e.clientX-r.left+'px';dot.style.top=e.clientY-r.top+'px';dot.style.opacity=1};chart.onmouseleave=()=>dot.style.opacity=0}
+
+// FAQ accordion — keep just one panel open at a time
+$$('.faq-item').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('.faq-item').forEach(o=>{if(o!==d)o.open=false})}));
+
+// rotating hero tagline
+const rot=$('#rotator');
+if(rot&&!reduced){const items=rot.querySelectorAll('i');let i=0;setInterval(()=>{items[i].classList.remove('on');i=(i+1)%items.length;items[i].classList.add('on')},3600)}
 })();
 </script>
 </body>
