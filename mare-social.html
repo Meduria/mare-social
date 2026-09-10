@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maré Social — Taberna at Katameya Dunes, Cairo</title>
+<meta name="description" content="Maré Social is an intimate taberna-style restaurant and bar at The Westin Cairo Golf Resort & Spa, Katameya Dunes — Mediterranean sharing plates and Nikkei sushi inspired by two-Michelin-starred chef Henrique Sá Pessoa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     TOKENS
+  ============================================================ */
+  :root{
+    --cream:      #f1ece1;
+    --cream-2:    #e9e2d2;   /* slightly deeper cream for panels */
+    --ink:        #201c18;
+    --ink-soft:   #37312b;
+    --oxblood:    #8a1f32;
+    --oxblood-2:  #5f1522;
+    --oxblood-line: rgba(138,31,50,0.28);
+    --stone:      #c9bfa9;
+    --stone-line: rgba(32,28,24,0.16);
+    --sand:       #a9885a;
+
+    --serif: 'Fraunces', 'Iowan Old Style', 'Georgia', serif;
+    --sans:  'Inter', -apple-system, 'Segoe UI', sans-serif;
+
+    --wrap: 1180px;
+    --pad: clamp(20px, 5vw, 72px);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; }
+  ::selection{ background:var(--oxblood); color:var(--cream); }
+
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad); }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--oxblood);
+    outline-offset:3px;
+  }
+
+  /* small-caps tracked label — used only for the printed-menu section
+     labels and nav, mirroring the physical menu's own type system */
+  .label{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oxblood);
+  }
+
+  .rule{
+    height:1px;
+    background:var(--stone-line);
+    border:none;
+    margin:0;
+  }
+
+  /* ============================================================
+     SCROLL PROGRESS — the tide line
+     A thin line at the top that fills as the page is read, like
+     water rising against the shore. Functional, not decorative.
+  ============================================================ */
+  #tide{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:var(--oxblood);
+    z-index:999;
+    transition:width 80ms linear;
+  }
+
+  /* ============================================================
+     NAV
+  ============================================================ */
+  header.site{
+    position:sticky; top:0; z-index:80;
+    background:var(--cream);
+    border-bottom:1px solid var(--stone-line);
+  }
+  body.nav-open{ overflow:hidden; }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .wordmark{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.5rem;
+    letter-spacing:0.01em;
+    text-decoration:none;
+    color:var(--ink);
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .wordmark em{
+    font-style:italic;
+    color:var(--oxblood);
+  }
+  .wordmark small{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:0.6rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    align-self:center;
+  }
+
+  .nav-links{
+    display:flex; align-items:center; gap:36px;
+    list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:0.86rem;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute; left:0; right:100%; bottom:0; height:1px;
+    background:var(--oxblood);
+    transition:right 220ms cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover::after{ right:0; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--sans); font-weight:600; font-size:0.82rem;
+    letter-spacing:0.04em;
+    padding:12px 22px;
+    border:1px solid var(--ink);
+    background:transparent; color:var(--ink);
+    text-decoration:none; cursor:pointer;
+    transition:background 200ms ease, color 200ms ease, border-color 200ms ease;
+  }
+  .btn{ transition:background 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms ease-out; }
+  .btn:hover{ background:var(--ink); color:var(--cream); }
+  .btn.solid{
+    background:var(--oxblood); border-color:var(--oxblood); color:var(--cream);
+  }
+  .btn.solid:hover{ background:var(--oxblood-2); border-color:var(--oxblood-2); }
+  .btn.on-dark{ border-color:var(--stone); color:var(--cream); }
+  .btn.on-dark:hover{ background:var(--cream); color:var(--ink); }
+
+  .burger{
+    display:none;
+    width:34px; height:26px;
+    background:none; border:none; cursor:pointer;
+    position:relative;
+  }
+  .burger span{
+    position:absolute; left:0; right:0; height:1px; background:var(--ink);
+    transition:transform 260ms ease, opacity 200ms ease, top 260ms ease;
+  }
+  .burger span:nth-child(1){ top:2px; }
+  .burger span:nth-child(2){ top:12px; }
+  .burger span:nth-child(3){ top:22px; }
+  .burger[aria-expanded="true"] span:nth-child(1){ top:12px; transform:rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .burger[aria-expanded="true"] span:nth-child(3){ top:12px; transform:rotate(-45deg); }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--stone-line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items:center;
+    min-height:calc(100svh - 68px);
+    gap:40px;
+  }
+  .hero-copy{
+    position:relative; z-index:2;
+    padding:64px 0;
+  }
+  .hero-copy .label{ margin-bottom:22px; display:block; }
+  .hero-copy h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.02;
+    margin:0 0 26px;
+    letter-spacing:-0.01em;
+    max-width:12ch;
+  }
+  .hero-copy h1 i{ font-style:italic; color:var(--oxblood); font-weight:400; }
+  .hero-copy p.lede{
+    font-size:1.08rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:42ch;
+    margin:0 0 38px;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .hero-chart{
+    position:relative;
+    height:100%;
+    min-height:420px;
+  }
+  .hero-chart svg{ width:100%; height:100%; }
+  .chart-plate{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .plate-ring{
+    width:min(360px, 70%);
+    aspect-ratio:1/1;
+    border-radius:50%;
+    border:1px solid var(--oxblood-line);
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .plate-ring::before{
+    content:'';
+    position:absolute; inset:34px;
+    border-radius:50%;
+    border:1px solid var(--oxblood-line);
+  }
+  .plate-inner{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:1rem;
+    color:var(--oxblood);
+    text-align:center;
+    letter-spacing:0.01em;
+    padding:0 20px;
+    line-height:1.5;
+  }
+
+  .contours{
+    position:absolute; inset:0;
+    z-index:1;
+    opacity:0.55;
+  }
+  .contours path{
+    fill:none;
+    stroke:var(--oxblood);
+    stroke-width:1;
+    opacity:0.5;
+  }
+  .contours .drift{ animation: drift 34s linear infinite; }
+  .contours .drift-slow{ animation: drift 52s linear infinite reverse; }
+  @keyframes drift{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-120px); }
+  }
+
+  /* ============================================================
+     TICKER — factual, not decorative: hours / location / booking
+  ============================================================ */
+  .ticker{
+    background:var(--ink);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--oxblood-2);
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation: ticker 38s linear infinite;
+    padding:15px 0;
+  }
+  .ticker:hover .ticker-track{ animation-play-state:paused; }
+  @keyframes ticker{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+  .ticker-item{
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:0.84rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:0 28px;
+    border-right:1px solid rgba(241,236,225,0.22);
+  }
+  .ticker-item.accent{ color:var(--sand); }
+
+  /* ============================================================
+     SECTION SCAFFOLDING
+  ============================================================ */
+  section{ padding:104px 0; }
+  .section-head{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:60px;
+    margin-bottom:56px;
+    align-items:end;
+  }
+  .section-head .label{ margin-bottom:16px; display:block; }
+  .section-head h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.9rem, 3.4vw, 2.7rem);
+    line-height:1.12;
+    margin:0;
+    max-width:14ch;
+  }
+  .section-head .support p{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin:0;
+  }
+
+  /* ============================================================
+     STORY
+  ============================================================ */
+  .story{ background:var(--cream-2); border-top:1px solid var(--stone-line); border-bottom:1px solid var(--stone-line); }
+  .story-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .story-visual{
+    aspect-ratio: 4/5;
+    position:relative;
+    background:
+      radial-gradient(120% 90% at 20% 15%, rgba(138,31,50,0.14), transparent 55%),
+      linear-gradient(155deg, #e4dcc9 0%, #d8cdb4 55%, #cdbf9f 100%);
+    display:flex; align-items:flex-end;
+  }
+  .story-visual svg{ position:absolute; inset:0; opacity:0.6; }
+  .story-visual .tag{
+    position:relative; z-index:2;
+    margin:26px;
+    background:var(--ink);
+    color:var(--cream);
+    padding:16px 20px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1rem;
+    max-width:22ch;
+  }
+  .story-copy p{
+    font-size:1.05rem;
+    line-height:1.75;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 22px;
+  }
+  .story-copy p:last-child{ margin-bottom:0; }
+  .story-copy strong{ color:var(--ink); font-weight:600; }
+  .credit-line{
+    display:flex; gap:18px; align-items:center;
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--stone-line);
+  }
+  .credit-line .name{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.15rem;
+  }
+  .credit-line .role{
+    font-size:0.82rem;
+    color:var(--ink-soft);
+  }
+
+  /* ============================================================
+     MENU
+  ============================================================ */
+  .menu-tabs{
+    display:flex; flex-wrap:wrap; gap:10px 6px;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--stone-line);
+    padding-bottom:0;
+  }
+  .menu-tab{
+    background:none; border:none; cursor:pointer;
+    font-family:var(--sans); font-weight:600; font-size:0.78rem;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-soft);
+    padding:12px 4px; margin-right:26px;
+    position:relative;
+  }
+  .menu-tab::after{
+    content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px;
+    background:var(--oxblood); transform:scaleX(0); transform-origin:left;
+    transition:transform 220ms ease;
+  }
+  .menu-tab[aria-selected="true"]{ color:var(--ink); }
+  .menu-tab[aria-selected="true"]::after{ transform:scaleX(1); }
+
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:block; animation:panelIn 420ms cubic-bezier(.22,1,.36,1); }
+  @keyframes panelIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .menu-panel.active{ animation:none; }
+  }
+
+  .menu-cols{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:0 72px;
+  }
+  .menu-group h3{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:1.2rem;
+    color:var(--oxblood);
+    margin:0 0 18px;
+  }
+  .menu-group{ margin-bottom:40px; }
+  .menu-group:last-child{ margin-bottom:0; }
+
+  .dish{
+    display:flex; align-items:baseline; gap:10px;
+    padding:11px 0;
+    border-bottom:1px dotted var(--stone-line);
+  }
+  .dish:last-child{ border-bottom:none; }
+  .dish .name{
+    font-size:0.98rem;
+    color:var(--ink);
+  }
+  .dish .desc{
+    display:block;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .dish .spacer{
+    flex:1;
+    border-bottom:1px dotted var(--stone-line);
+    transform:translateY(-5px);
+    min-width:16px;
+  }
+  .dish .price{
+    font-size:0.94rem;
+    font-variant-numeric: tabular-nums;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:36px;
+    font-size:0.86rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--stone-line);
+    padding-top:20px;
+  }
+
+  /* ============================================================
+     JOURNEY strip — three provenance columns, deliberately
+     uneven widths (not identical cards)
+  ============================================================ */
+  .journey{ background:var(--ink); color:var(--cream); }
+  .journey .section-head h2, .journey .label{ color:var(--cream); }
+  .journey .label{ color:var(--sand); }
+  .journey .section-head .support p{ color:rgba(241,236,225,0.72); }
+  .journey-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 0.9fr 1.4fr;
+    gap:0;
+    border-top:1px solid rgba(241,236,225,0.18);
+  }
+  .journey-col{
+    padding:38px 32px 0 0;
+    border-right:1px solid rgba(241,236,225,0.18);
+  }
+  .journey-col:last-child{ border-right:none; padding-right:0; }
+  .journey-col:not(:first-child){ padding-left:32px; }
+  .journey-col .num{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--sand);
+    font-size:0.95rem;
+    margin-bottom:14px;
+    display:block;
+  }
+  .journey-col h4{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.3rem;
+    margin:0 0 14px;
+  }
+  .journey-col p{
+    font-size:0.94rem;
+    line-height:1.65;
+    color:rgba(241,236,225,0.78);
+    margin:0;
+  }
+
+  /* ============================================================
+     RESERVE / VISIT
+  ============================================================ */
+  .visit{ background:var(--cream-2); }
+  .visit-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1fr 1fr;
+    gap:44px;
+    align-items:stretch;
+  }
+  .info-list{ list-style:none; margin:0; padding:0; }
+  .info-list li{
+    display:grid; grid-template-columns: 140px 1fr;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid var(--stone-line);
+  }
+  .info-list li:first-child{ border-top:1px solid var(--stone-line); }
+  .info-list dt{
+    font-family:var(--sans); font-weight:600; font-size:0.74rem;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--oxblood);
+    margin:0;
+  }
+  .info-list dd{
+    margin:0; font-size:1rem; color:var(--ink);
+    line-height:1.55;
+  }
+  .info-list dd a{ text-decoration:underline; text-underline-offset:3px; }
+
+  .reserve-panel{
+    background:var(--ink); color:var(--cream);
+    padding:44px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .reserve-panel h3{
+    font-family:var(--serif); font-weight:500; font-style:italic;
+    font-size:1.6rem; margin:0 0 14px;
+  }
+  .reserve-panel p{
+    color:rgba(241,236,225,0.78);
+    font-size:0.98rem; line-height:1.6;
+    margin:0 0 34px;
+    max-width:38ch;
+  }
+  .reserve-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  /* ============================================================
+     FOOTER
+  ============================================================ */
+  footer{ padding:56px 0 40px; }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:28px;
+    padding-bottom:32px;
+  }
+  .foot-social{ display:flex; gap:24px; list-style:none; margin:0; padding:0; }
+  .foot-social a, .foot-social-btn{ text-decoration:none; font-size:0.86rem; border-bottom:1px solid var(--stone-line); padding-bottom:2px; }
+  .foot-social a:hover, .foot-social-btn:hover{ border-color:var(--oxblood); color:var(--oxblood); }
+  .foot-social-btn{
+    background:none; border:none; border-bottom:1px solid var(--stone-line);
+    font-family:var(--sans); color:var(--ink); cursor:pointer;
+  }
+
+  /* ============================================================
+     SOCIAL MODAL — a popover on desktop, a bottom sheet on phone.
+     Replaces sending people off to a third-party link aggregator.
+  ============================================================ */
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:120;
+    background:rgba(20,17,15,0.55);
+    backdrop-filter:blur(3px);
+    opacity:0; pointer-events:none;
+    transition:opacity 260ms ease;
+  }
+  .modal-backdrop.open{ opacity:1; pointer-events:auto; }
+
+  .modal-panel{
+    position:fixed;
+    z-index:121;
+    top:50%; left:50%;
+    width:min(440px, calc(100vw - 48px));
+    max-height:min(600px, 82vh);
+    background:var(--cream);
+    border:1px solid var(--stone-line);
+    box-shadow:0 30px 70px -20px rgba(20,17,15,0.45);
+    transform:translate(-50%,-46%) scale(0.97);
+    opacity:0;
+    pointer-events:none;
+    transition:transform 320ms cubic-bezier(.22,1,.36,1), opacity 260ms ease;
+    display:flex; flex-direction:column;
+  }
+  .modal-backdrop.open .modal-panel{
+    transform:translate(-50%,-50%) scale(1);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .modal-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:20px;
+    padding:26px 26px 18px;
+    border-bottom:1px solid var(--stone-line);
+  }
+  .modal-head h3{
+    font-family:var(--serif); font-weight:500; font-style:italic;
+    font-size:1.4rem; margin:0 0 4px;
+  }
+  .modal-head p{ margin:0; font-size:0.86rem; color:var(--ink-soft); }
+  .modal-close{
+    background:none; border:1px solid var(--stone); cursor:pointer;
+    width:32px; height:32px; flex:none;
+    font-family:var(--sans); font-size:0.95rem; color:var(--ink);
+    line-height:1;
+    transition:background 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  }
+  .modal-close:hover{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+  .modal-close:active{ transform:scale(0.9); }
+
+  .modal-links{ list-style:none; margin:0; padding:10px 0; overflow-y:auto; }
+  .modal-links li{ border-bottom:1px dotted var(--stone-line); }
+  .modal-links li:last-child{ border-bottom:none; }
+  .modal-links a{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    text-decoration:none; color:var(--ink);
+    padding:15px 26px;
+    transition:background 180ms ease, padding-left 180ms ease;
+  }
+  .modal-links a:hover{ background:rgba(138,31,50,0.06); padding-left:32px; }
+  .modal-links a:active{ background:rgba(138,31,50,0.12); }
+  .ml-name{
+    font-family:var(--serif); font-style:italic; font-size:1.05rem;
+  }
+  .ml-sub{
+    display:block; font-family:var(--sans); font-style:normal;
+    font-size:0.78rem; color:var(--ink-soft); margin-top:2px;
+  }
+  .ml-go{
+    font-family:var(--sans); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--oxblood); white-space:nowrap;
+  }
+  .modal-drag{
+    display:none;
+    width:40px; height:4px; background:var(--stone);
+    margin:10px auto 0;
+  }
+
+  @media (max-width:640px){
+    .modal-panel{
+      top:auto; left:0; right:0; bottom:0;
+      width:100%; max-height:80vh;
+      transform:translateY(100%);
+      border-left:none; border-right:none; border-bottom:none;
+    }
+    .modal-backdrop.open .modal-panel{ transform:translateY(0); }
+    .modal-drag{ display:block; }
+    .modal-head{ padding-top:6px; }
+  }
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.78rem; color:var(--ink-soft);
+    padding-top:24px; border-top:1px solid var(--stone-line);
+  }
+
+  /* ============================================================
+     REVEAL — a tide wipe. Content rises into view the way water
+     covers sand; used once per element on first scroll-into-view,
+     not a repeating hover trick.
+  ============================================================ */
+  .reveal{
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(18px);
+    opacity:0;
+    transition: clip-path 900ms cubic-bezier(.22,1,.36,1),
+                transform 900ms cubic-bezier(.22,1,.36,1),
+                opacity 600ms ease;
+    will-change: clip-path, transform;
+  }
+  .reveal.in{
+    clip-path: inset(0 0 0% 0);
+    transform: translateY(0);
+    opacity:1;
+  }
+  .reveal-group.in .reveal:nth-child(1){ transition-delay:0ms; }
+  .reveal-group.in .reveal:nth-child(2){ transition-delay:90ms; }
+  .reveal-group.in .reveal:nth-child(3){ transition-delay:180ms; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ clip-path:none; transform:none; opacity:1; transition:none; }
+  }
+
+  /* ============================================================
+     SHOT — a placeholder for photography not yet taken. Styled
+     as a contact-sheet frame rather than a fake photo: honest
+     about what it is, specific about what should go there.
+  ============================================================ */
+  .shot{
+    position:relative;
+    background:
+      radial-gradient(140% 120% at 12% -10%, rgba(138,31,50,0.16), transparent 55%),
+      linear-gradient(165deg, #1c1815 0%, #121010 100%);
+    color:var(--cream);
+    overflow:hidden;
+    cursor:default;
+    border:1px solid rgba(241,236,225,0.14);
+    transform-style:preserve-3d;
+    transition:border-color 300ms ease, transform 260ms ease-out;
+  }
+  .shot::before, .shot::after{
+    content:'';
+    position:absolute; width:13px; height:13px;
+    border:1px solid rgba(241,236,225,0.4);
+    transition:border-color 300ms ease, width 300ms ease, height 300ms ease;
+  }
+  .shot::before{ top:12px; left:12px; border-right:none; border-bottom:none; }
+  .shot::after{ bottom:12px; right:12px; border-left:none; border-top:none; }
+  .shot:hover{ border-color:var(--oxblood); }
+  .shot:hover::before, .shot:hover::after{ border-color:var(--sand); width:19px; height:19px; }
+  .shot-inner{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:flex-start;
+    padding:28px 26px 22px;
+    transform:translateZ(30px);
+  }
+  .shot-fig{
+    font-family:var(--sans); font-weight:600; font-size:0.68rem;
+    letter-spacing:0.14em; text-transform:uppercase;
+    color:rgba(241,236,225,0.55);
+    margin-bottom:16px;
+  }
+  .shot-cap{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:1.1rem; line-height:1.4;
+    max-width:22ch;
+    margin-bottom:auto;   /* absorbs the slack so the tag row always sits flush at the base */
+    padding-bottom:28px;
+    transition:transform 300ms ease;
+  }
+  .shot:hover .shot-cap{ transform:translateY(-4px); }
+  .shot-meta{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    width:100%;
+  }
+  .shot-tag{
+    font-family:var(--sans); font-weight:500; font-size:0.66rem;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--sand);
+    border:1px solid rgba(169,136,90,0.5);
+    padding:5px 9px;
+    white-space:nowrap;
+  }
+  .shot-grain{
+    position:absolute; inset:0; opacity:0.06; pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,0.9) 0.6px, transparent 0.6px);
+    background-size:3px 3px;
+  }
+
+  /* photo-bearing frames: same contact-sheet shell, a real image on the
+     back layer instead of a flat placeholder colour */
+  .shot.has-photo{ background:#0e0c0b; }
+  .shot-photo{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; display:block;
+    opacity:0;
+    transition:opacity 600ms ease, transform 600ms ease;
+  }
+  .shot.img-loaded .shot-photo{ opacity:1; }
+  .shot.has-photo:hover .shot-photo{ transform:scale(1.045); }
+  .shot.img-failed .shot-photo{ display:none; }
+  .shot-scrim{
+    position:absolute; inset:0; opacity:0;
+    background:linear-gradient(180deg, rgba(14,12,11,0) 30%, rgba(12,10,9,0.9) 100%);
+    transition:opacity 500ms ease;
+  }
+  .shot.has-photo.img-loaded .shot-scrim{ opacity:1; }
+  .shot-fig .credit{
+    color:rgba(241,236,225,0.4);
+    text-transform:none;
+    letter-spacing:0.02em;
+    font-weight:400;
+  }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap:14px;
+  }
+  .gallery-grid .shot:nth-child(1){ grid-row:1 / 3; }
+
+  /* ============================================================
+     BUTTON MICRO-INTERACTIONS — ripple (a drop hitting water)
+     and a light magnetic pull toward the cursor on desktop.
+  ============================================================ */
+  .btn{ position:relative; overflow:hidden; }
+  .btn .ripple{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(241,236,225,0.55);
+    transform:scale(0);
+    animation:ripple 650ms ease-out forwards;
+    pointer-events:none;
+  }
+  .btn.solid .ripple, .btn.on-dark .ripple{ background:rgba(241,236,225,0.35); }
+  @keyframes ripple{
+    to{ transform:scale(2.6); opacity:0; }
+  }
+
+  /* cursor marker inside the hero chart only */
+  .tide-dot{
+    position:absolute; width:7px; height:7px; border-radius:50%;
+    background:var(--oxblood);
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity 200ms ease;
+    z-index:3;
+  }
+  .tide-dot::after{
+    content:'';
+    position:absolute; inset:-9px;
+    border:1px solid var(--oxblood-line);
+    border-radius:50%;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
+  /* touch feedback — since :hover doesn't exist on phones, :active
+     carries the tactile response there instead */
+  .btn:active{ transform:scale(0.96); }
+  .shot:active{ transform:scale(0.985); }
+  .menu-tab:active{ opacity:0.6; }
+
+  /* mobile-only sticky action bar */
+  .mobile-cta{
+    display:none;
+  }
+  @media (max-width:760px){
+    .mobile-cta{
+      display:flex;
+      position:fixed; left:0; right:0; bottom:0; z-index:50;
+      background:var(--ink);
+      border-top:1px solid rgba(241,236,225,0.14);
+      padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+      gap:10px;
+    }
+    .mobile-cta a{
+      flex:1;
+      display:flex; align-items:center; justify-content:center;
+      gap:8px;
+      font-family:var(--sans); font-weight:600; font-size:0.82rem;
+      letter-spacing:0.03em;
+      padding:13px 10px;
+      text-decoration:none;
+      color:var(--cream);
+      border:1px solid rgba(241,236,225,0.3);
+    }
+    .mobile-cta a.solid{ background:var(--oxblood); border-color:var(--oxblood); }
+    .mobile-cta a:active{ transform:scale(0.96); }
+    /* keep the last section clear of the fixed bar */
+    body{ padding-bottom:64px; }
+  }
+  @media (max-width: 980px){
+    .hero-grid{ grid-template-columns:1fr; min-height:auto; }
+    .hero-chart{ min-height:280px; order:-1; }
+    .section-head{ grid-template-columns:1fr; gap:18px; }
+    .story-grid, .visit-grid{ grid-template-columns:1fr; }
+    .story-visual{ aspect-ratio:16/9; }
+    .menu-cols{ grid-template-columns:1fr; }
+    .journey-grid{ grid-template-columns:1fr; }
+    .journey-col{ border-right:none !important; padding:32px 0 !important; border-bottom:1px solid rgba(241,236,225,0.18); }
+    .journey-col:last-child{ border-bottom:none; }
+    .gallery-grid{ grid-template-columns:1fr 1fr; grid-template-rows:180px 180px 180px; }
+    .gallery-grid .shot:nth-child(1){ grid-column:1/3; grid-row:1/2; }
+  }
+
+  @media (max-width: 760px){
+    .nav-links{
+      position:fixed; inset:69px 0 0 0;
+      z-index:70;
+      background:var(--cream);
+      opacity:1;
+      flex-direction:column; align-items:flex-start;
+      padding:36px var(--pad);
+      gap:26px;
+      transform:translateX(100%);
+      transition:transform 280ms cubic-bezier(.4,0,.2,1);
+      box-shadow:0 18px 40px -12px rgba(32,28,24,0.28);
+      border-top:1px solid var(--stone-line);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:1.15rem; }
+    .nav-links .btn.solid{ margin-top:8px; width:100%; justify-content:center; }
+    .burger{ display:block; position:relative; z-index:81; }
+    .info-list li{ grid-template-columns:1fr; gap:6px; }
+    .reserve-panel{ padding:32px; }
+  }
+
+  @media (max-width: 560px){
+    section{ padding:72px 0; }
+    .hero-copy{ padding:44px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="tide" aria-hidden="true"></div>
+
+<header class="site">
+  <nav class="wrap nav">
+    <a href="#top" class="wordmark">m<em>a</em>ré <small>social</small></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#journey">Cuisine</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a class="btn solid" href="#visit">Reserve a table</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="padding:0;">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="label">Taberna &amp; Bar · Katameya Dunes, Cairo</span>
+        <h1>Dinner moves like <i>the tide.</i></h1>
+        <p class="lede">
+          Small plates built for sharing, Nikkei-style sushi, and a
+          drinks list worth lingering over — inspired by two-Michelin-starred
+          chef Henrique Sá Pessoa, served nightly at The Westin Cairo
+          Golf Resort &amp; Spa.
+        </p>
+        <div class="hero-actions">
+          <a href="#visit" class="btn solid">Reserve a table</a>
+          <a href="#menu" class="btn">View the menu</a>
+        </div>
+      </div>
+
+      <div class="hero-chart" aria-hidden="true">
+        <svg class="contours" viewBox="0 0 600 500" preserveAspectRatio="none">
+          <path class="drift" d="M-50 60 C 100 20, 250 100, 400 60 S 700 20, 850 60" />
+          <path class="drift-slow" d="M-50 130 C 120 90, 260 170, 420 130 S 720 90, 870 130" />
+          <path class="drift" d="M-50 200 C 90 160, 270 240, 430 200 S 740 160, 880 200" />
+          <path class="drift-slow" d="M-50 270 C 130 230, 250 310, 410 270 S 730 230, 860 270" />
+          <path class="drift" d="M-50 340 C 100 300, 260 380, 420 340 S 730 300, 870 340" />
+          <path class="drift-slow" d="M-50 410 C 110 370, 270 450, 430 410 S 740 370, 880 410" />
+        </svg>
+        <div class="chart-plate">
+          <div class="plate-ring">
+            <div class="plate-inner">Josper prawns,<br>salmon tartare,<br>and the day's catch</div>
+          </div>
+        </div>
+        <div class="tide-dot" id="tideDot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker">
+    <div class="ticker-track" aria-hidden="true">
+      <span class="ticker-item">The Westin Cairo Golf Resort &amp; Spa</span>
+      <span class="ticker-item">Katameya Dunes</span>
+      <span class="ticker-item accent">Dinner nightly until 1am</span>
+      <span class="ticker-item">Smart casual</span>
+      <span class="ticker-item">Reservations recommended</span>
+      <span class="ticker-item">The Westin Cairo Golf Resort &amp; Spa</span>
+      <span class="ticker-item">Katameya Dunes</span>
+      <span class="ticker-item accent">Dinner nightly until 1am</span>
+      <span class="ticker-item">Smart casual</span>
+      <span class="ticker-item">Reservations recommended</span>
+    </div>
+  </div>
+
+  <!-- ============ STORY ============ -->
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div class="story-visual shot has-photo reveal" style="aspect-ratio:4/5;" data-tilt>
+        <img class="shot-photo" alt="Interior of Maré Social's dining room at The Westin Cairo Golf Resort & Spa"
+             src="https://cache.marriott.com/is/image/marriotts7prod/wi-caiwi-mare-restaurant-25142:Square"
+             loading="lazy"
+             onload="this.closest('.shot').classList.add('img-loaded')"
+             onerror="this.closest('.shot').classList.add('img-failed')">
+        <div class="shot-scrim"></div>
+        <div class="shot-grain"></div>
+        <div class="shot-inner">
+          <span class="shot-fig">Fig. 00 <span class="credit">— The Westin Cairo, official gallery</span></span>
+          <span class="shot-cap">Inside the dining room, where tapas move table to table.</span>
+          <div class="shot-meta">
+            <span class="shot-tag">4:5 · Portrait</span>
+            <span class="shot-tag">Interior</span>
+          </div>
+        </div>
+      </div>
+      <div class="story-copy reveal-group">
+        <span class="label reveal">The idea</span>
+        <h2 class="reveal" style="font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3vw,2.5rem); margin:16px 0 26px; max-width:16ch;">An intimate taberna, built for sharing.</h2>
+        <p class="reveal">
+          Maré Social takes its name from the Portuguese word for tide —
+          a rhythm that never sits still. The kitchen works the same way:
+          <strong>cold and hot tapas move across the table in waves</strong>,
+          followed by mains, sushi, and dessert, in whatever order the
+          evening calls for.
+        </p>
+        <p class="reveal">
+          The menu is guided by Henrique Sá Pessoa, the two-Michelin-starred
+          Portuguese chef known for grounding refined technique in honest,
+          produce-led cooking. Here that translates into josper-grilled
+          seafood, cured meats, and a Nikkei sushi counter alongside it —
+          <strong>Iberian and Japanese references sharing one table.</strong>
+        </p>
+        <div class="credit-line reveal">
+          <span class="name">Henrique Sá Pessoa</span>
+          <span class="role">Two-Michelin-starred chef, culinary concept</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head reveal-group">
+        <div class="reveal">
+          <span class="label">A taste of the menu</span>
+          <h2>Cold, hot, and everything in between.</h2>
+        </div>
+        <div class="support reveal">
+          <p>A working selection from our current tapas, mains, and sushi
+          menus. The full menu, with all allergens marked, is presented
+          table-side.</p>
+        </div>
+      </div>
+
+      <div class="menu-tabs" role="tablist" aria-label="Menu categories">
+        <button class="menu-tab" role="tab" aria-selected="true" data-panel="tapas">Tapas</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-panel="mains">Mains</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-panel="sushi">Sushi &amp; Nikkei</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-panel="drinks">Drinks</button>
+      </div>
+
+      <div class="menu-panel active" id="panel-tapas" role="tabpanel">
+        <div class="menu-cols">
+          <div class="menu-group">
+            <h3>Cold tapas</h3>
+            <div class="dish"><span class="name">Burrata <span class="desc">Fresh leaves, melon &amp; grapes</span></span><span class="spacer"></span><span class="price">920</span></div>
+            <div class="dish"><span class="name">Salmon tartare <span class="desc">Apple, fennel &amp; celery purée</span></span><span class="spacer"></span><span class="price">920</span></div>
+            <div class="dish"><span class="name">Tuna tartare <span class="desc">Avocado mayonnaise, tomato</span></span><span class="spacer"></span><span class="price">850</span></div>
+            <div class="dish"><span class="name">Josper prawns <span class="desc">Autumn salad</span></span><span class="spacer"></span><span class="price">930</span></div>
+            <div class="dish"><span class="name">Octopus <span class="desc">Potatoes, smoked paprika</span></span><span class="spacer"></span><span class="price">1050</span></div>
+          </div>
+          <div class="menu-group">
+            <h3>Hot tapas</h3>
+            <div class="dish"><span class="name">Batatas bravas <span class="desc">Spicy tomato, garlic aioli</span></span><span class="spacer"></span><span class="price">520</span></div>
+            <div class="dish"><span class="name">Baby calamari <span class="desc">Lentil curry, miso coriander</span></span><span class="spacer"></span><span class="price">750</span></div>
+            <div class="dish"><span class="name">Prawns <span class="desc">Garlic &amp; chili</span></span><span class="spacer"></span><span class="price">1550</span></div>
+            <div class="dish"><span class="name">Chicken wings <span class="desc">Glazed barbeque</span></span><span class="spacer"></span><span class="price">540</span></div>
+            <div class="dish"><span class="name">Caldeirada fish soup</span><span class="spacer"></span><span class="price">720</span></div>
+          </div>
+        </div>
+        <p class="menu-note">(E) Egg · (N) Nuts · (D) Dairy · (G) Gluten · (S) Shellfish · (Veg) Vegetarian — full allergen listing on the printed menu. Prices in Egyptian pounds, service and tax included.</p>
+      </div>
+
+      <div class="menu-panel" id="panel-mains" role="tabpanel">
+        <div class="menu-cols">
+          <div class="menu-group">
+            <h3>From the josper &amp; grill</h3>
+            <div class="dish"><span class="name">Rib eye <span class="desc">Grilled vegetables, roast sweet potato, mushroom sauce</span></span><span class="spacer"></span><span class="price">3850</span></div>
+            <div class="dish"><span class="name">Lamb rack <span class="desc">Fresh salad, yogurt</span></span><span class="spacer"></span><span class="price">2600</span></div>
+            <div class="dish"><span class="name">Beef tenderloin <span class="desc">Vegetables, fondant potato</span></span><span class="spacer"></span><span class="price">2495</span></div>
+            <div class="dish"><span class="name">Grilled octopus <span class="desc">Potatoes, cabbage, olive oil</span></span><span class="spacer"></span><span class="price">2145</span></div>
+          </div>
+          <div class="menu-group">
+            <h3>Rice, pasta &amp; sea</h3>
+            <div class="dish"><span class="name">Seafood paella <span class="desc">For two</span></span><span class="spacer"></span><span class="price">3995</span></div>
+            <div class="dish"><span class="name">Tiger prawn rice <span class="desc">Seafood emulsion</span></span><span class="spacer"></span><span class="price">1950</span></div>
+            <div class="dish"><span class="name">Seabass <span class="desc">White bean hummus, romesco</span></span><span class="spacer"></span><span class="price">1550</span></div>
+            <div class="dish"><span class="name">Beef rigatoni <span class="desc">Mushrooms, ricotta cheese</span></span><span class="spacer"></span><span class="price">1350</span></div>
+          </div>
+        </div>
+        <p class="menu-note">Sides — roasted potatoes, wild mushrooms, Portuguese salad, and basmati rice — are ordered separately, tapas-style.</p>
+      </div>
+
+      <div class="menu-panel" id="panel-sushi" role="tabpanel">
+        <div class="menu-cols">
+          <div class="menu-group">
+            <h3>Nigiri &amp; sashimi <span style="font-family:var(--sans); font-style:normal; font-weight:600; font-size:0.7rem; letter-spacing:0.08em; color:var(--ink-soft); text-transform:uppercase; vertical-align:middle;">— 4pcs</span></h3>
+            <div class="dish"><span class="name">Salmon nigiri</span><span class="spacer"></span><span class="price">550</span></div>
+            <div class="dish"><span class="name">Tuna sashimi</span><span class="spacer"></span><span class="price">500</span></div>
+            <div class="dish"><span class="name">Seabass sashimi</span><span class="spacer"></span><span class="price">520</span></div>
+          </div>
+          <div class="menu-group">
+            <h3>Inspired rolls <span style="font-family:var(--sans); font-style:normal; font-weight:600; font-size:0.7rem; letter-spacing:0.08em; color:var(--ink-soft); text-transform:uppercase; vertical-align:middle;">— 6pcs</span></h3>
+            <div class="dish"><span class="name">Barcelona sunset <span class="desc">Scallop &amp; red pepper</span></span><span class="spacer"></span><span class="price">690</span></div>
+            <div class="dish"><span class="name">Estoril salmon roll <span class="desc">Citrus salmon</span></span><span class="spacer"></span><span class="price">650</span></div>
+            <div class="dish"><span class="name">Algarve roll <span class="desc">Octopus &amp; paprika</span></span><span class="spacer"></span><span class="price">640</span></div>
+          </div>
+        </div>
+        <p class="menu-note">Nikkei by the dish — marinated seabass ceviche, tuna tataki with escabeche and basil oil, salmon tiradito, mackerel crudo.</p>
+      </div>
+
+      <div class="menu-panel" id="panel-drinks" role="tabpanel">
+        <div class="menu-cols">
+          <div class="menu-group">
+            <h3>Bar &amp; spirits</h3>
+            <div class="dish"><span class="name">Single malt, Glenfiddich 12</span><span class="spacer"></span><span class="price">4000</span></div>
+            <div class="dish"><span class="name">Grey Goose vodka</span><span class="spacer"></span><span class="price">2800</span></div>
+            <div class="dish"><span class="name">Jameson</span><span class="spacer"></span><span class="price">1200</span></div>
+          </div>
+          <div class="menu-group">
+            <h3>Fresh &amp; without alcohol</h3>
+            <div class="dish"><span class="name">Balancing beets <span class="desc">Beetroot, pineapple, carrot, ginger, basil</span></span><span class="spacer"></span><span class="price">400</span></div>
+            <div class="dish"><span class="name">Fresh mango juice</span><span class="spacer"></span><span class="price">280</span></div>
+            <div class="dish"><span class="name">Spanish latté</span><span class="spacer"></span><span class="price">280</span></div>
+          </div>
+        </div>
+        <p class="menu-note">The full spirits, wine, and cocktail list is presented at the table.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head reveal-group">
+        <div class="reveal">
+          <span class="label">The room</span>
+          <h2>A shot list, partly filled.</h2>
+        </div>
+        <div class="support reveal">
+          <p>One frame from the official gallery, and three still marked
+          for the next shoot — kitchen, sushi counter, and bar, exactly
+          as a guest sees them.</p>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <div class="shot has-photo reveal" data-tilt>
+          <img class="shot-photo" alt="Entrance of Maré Social at Katameya Dunes"
+               src="https://cache.marriott.com/is/image/marriotts7prod/wi-caiwi-mare-social-entranc-16741-32708:Square"
+               loading="lazy"
+               onload="this.closest('.shot').classList.add('img-loaded')"
+               onerror="this.closest('.shot').classList.add('img-failed')">
+          <div class="shot-scrim"></div>
+          <div class="shot-grain"></div>
+          <div class="shot-inner">
+            <span class="shot-fig">Fig. 01 <span class="credit">— official gallery</span></span>
+            <span class="shot-cap">The entrance, Katameya Dunes.</span>
+            <div class="shot-meta"><span class="shot-tag">Entrance</span></div>
+          </div>
+        </div>
+        <div class="shot reveal" data-tilt>
+          <div class="shot-grain"></div>
+          <div class="shot-inner">
+            <span class="shot-fig">Fig. 02 — pending</span>
+            <span class="shot-cap">Josper grill in motion, smoke over the coals.</span>
+            <div class="shot-meta"><span class="shot-tag">Kitchen</span></div>
+          </div>
+        </div>
+        <div class="shot reveal" data-tilt>
+          <div class="shot-grain"></div>
+          <div class="shot-inner">
+            <span class="shot-fig">Fig. 03 — pending</span>
+            <span class="shot-cap">Sushi counter — nigiri and inspired rolls, overhead.</span>
+            <div class="shot-meta"><span class="shot-tag">Food</span></div>
+          </div>
+        </div>
+        <div class="shot reveal" data-tilt>
+          <div class="shot-grain"></div>
+          <div class="shot-inner">
+            <span class="shot-fig">Fig. 04 — pending</span>
+            <span class="shot-cap">The bar, mid-service, bottles lit from below.</span>
+            <div class="shot-meta"><span class="shot-tag">Bar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CUISINE JOURNEY ============ -->
+  <section class="journey" id="journey">
+    <div class="wrap">
+      <div class="section-head reveal-group">
+        <div class="reveal">
+          <span class="label">Where it comes from</span>
+          <h2>Two coastlines, one table.</h2>
+        </div>
+        <div class="support reveal">
+          <p>The menu doesn't pick a single country — it follows the
+          chef's own path, from the Portuguese coast to the sushi counter.</p>
+        </div>
+      </div>
+      <div class="journey-grid reveal-group">
+        <div class="journey-col reveal">
+          <span class="num">Lisbon</span>
+          <h4>Portuguese taberna cooking</h4>
+          <p>Josper-grilled meats and seafood, cured pasterma, croquettes,
+          and the caldeirada fish soup that anchors the hot tapas list —
+          rustic dishes served with restaurant-grade precision.</p>
+        </div>
+        <div class="journey-col reveal">
+          <span class="num">Iberia &amp; the Mediterranean</span>
+          <h4>Sharing plates</h4>
+          <p>Burrata, Portuguese salads, batatas bravas, and paella for
+          two — food designed to be passed around the table rather than
+          plated for one.</p>
+        </div>
+        <div class="journey-col reveal">
+          <span class="num">Nikkei</span>
+          <h4>Japanese-Peruvian sushi &amp; ceviche</h4>
+          <p>Nigiri, sashimi, and inspired rolls sit alongside tiraditos
+          and crudos — a nod to the Nikkei tradition of Japanese technique
+          meeting South American citrus and chili.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT / RESERVE ============ -->
+  <section class="visit" id="visit">
+    <div class="wrap visit-grid">
+      <div class="shot has-photo reveal" style="aspect-ratio:4/5;" data-tilt>
+        <img class="shot-photo" alt="Maré Social signage at Katameya Dunes on opening night"
+             src="https://assets.micontenthub.com/morecravings/stories/1687415445-wesCAIWIsp1229027.jpg?tr=x-93,y-0,w-1545,h-1401,cm-extract:w-600,h-544"
+             loading="lazy"
+             onload="this.closest('.shot').classList.add('img-loaded')"
+             onerror="this.closest('.shot').classList.add('img-failed')">
+        <div class="shot-scrim"></div>
+        <div class="shot-grain"></div>
+        <div class="shot-inner">
+          <span class="shot-fig">Fig. 05 <span class="credit">— official gallery</span></span>
+          <span class="shot-cap">Katameya Dunes, on opening night.</span>
+          <div class="shot-meta"><span class="shot-tag">Location</span></div>
+        </div>
+      </div>
+      <div class="reveal-group">
+        <span class="label reveal">Visit</span>
+        <h2 class="reveal" style="font-family:var(--serif); font-weight:500; font-size:clamp(1.9rem,3vw,2.5rem); margin:16px 0 30px;">Find us at the dunes.</h2>
+        <dl class="info-list reveal">
+          <li><dt>Where</dt><dd>The Westin Cairo Golf Resort &amp; Spa, Katameya Dunes, Cairo</dd></li>
+          <li><dt>Hours</dt><dd>Dinner served nightly, open until 1am</dd></li>
+          <li><dt>Dress code</dt><dd>Smart casual</dd></li>
+          <li><dt>Getting there</dt><dd><a href="https://www.google.com/maps/search/?api=1&query=30.003261,31.52115" target="_blank" rel="noopener">Open directions in Google Maps</a></dd></li>
+        </dl>
+      </div>
+      <div class="reserve-panel reveal">
+        <div>
+          <span class="label" style="color:var(--sand);">Reservations</span>
+          <h3>A table for one evening, or a running tab all night.</h3>
+          <p>We recommend booking ahead, particularly Thursday through
+          Saturday. Larger groups and private dining are arranged directly
+          with our team.</p>
+        </div>
+        <div class="reserve-actions">
+          <a href="https://www.morecravings.com/en/cairo/venues/mare-social" target="_blank" rel="noopener" class="btn solid">Book on More Cravings</a>
+          <button type="button" class="btn on-dark" data-social-open>Find us elsewhere</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="mobile-cta" aria-hidden="false">
+  <a href="tel:+20223228090">Call</a>
+  <a href="#visit" class="solid">Reserve a table</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a href="#top" class="wordmark">m<em>a</em>ré <small>social</small></a>
+      <ul class="foot-social">
+        <li><a href="https://www.instagram.com/mare_social/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><button type="button" class="foot-social-btn" data-social-open>All ways to reach us</button></li>
+        <li><a href="https://www.morecravings.com/en/cairo/venues/mare-social" target="_blank" rel="noopener">More Cravings</a></li>
+      </ul>
+    </div>
+    <hr class="rule">
+    <div class="foot-bottom">
+      <span>The Westin Cairo Golf Resort &amp; Spa, Katameya Dunes, Cairo</span>
+      <span>Culinary concept by Henrique Sá Pessoa · Managed by Marriott International</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="socialBackdrop" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="socialTitle" id="socialPanel">
+    <div class="modal-drag" aria-hidden="true"></div>
+    <div class="modal-head">
+      <div>
+        <h3 id="socialTitle">Find us elsewhere</h3>
+        <p>Every way to reach Maré Social, in one place.</p>
+      </div>
+      <button type="button" class="modal-close" id="socialClose" aria-label="Close">✕</button>
+    </div>
+    <ul class="modal-links">
+      <li><a href="https://www.instagram.com/mare_social/" target="_blank" rel="noopener"><span><span class="ml-name">Instagram</span><span class="ml-sub">@mare_social</span></span><span class="ml-go">Open</span></a></li>
+      <li><a href="https://www.facebook.com/MareSocialRestaurant/" target="_blank" rel="noopener"><span><span class="ml-name">Facebook</span><span class="ml-sub">Maré Social</span></span><span class="ml-go">Open</span></a></li>
+      <li><a href="https://wa.me/201202648888" target="_blank" rel="noopener"><span><span class="ml-name">WhatsApp</span><span class="ml-sub">Message the team</span></span><span class="ml-go">Chat</span></a></li>
+      <li><a href="tel:+20223228090"><span><span class="ml-name">Call</span><span class="ml-sub">+20 2 2322 8090</span></span><span class="ml-go">Dial</span></a></li>
+      <li><a href="mailto:wh.caiwi.mare.social@westin.com"><span><span class="ml-name">Email</span><span class="ml-sub">Private events &amp; enquiries</span></span><span class="ml-go">Write</span></a></li>
+      <li><a href="https://www.sevenrooms.com/reservations/maresocial" target="_blank" rel="noopener"><span><span class="ml-name">Reservations</span><span class="ml-sub">Book a table online</span></span><span class="ml-go">Book</span></a></li>
+      <li><a href="https://www.maresocialrestaurant.com/" target="_blank" rel="noopener"><span><span class="ml-name">Website</span><span class="ml-sub">maresocialrestaurant.com</span></span><span class="ml-go">Visit</span></a></li>
+      <li><a href="https://www.tripadvisor.com/Restaurant_Review-g294201-d25558514-Reviews-Mare_Social-Cairo_Cairo_Governorate.html" target="_blank" rel="noopener"><span><span class="ml-name">Tripadvisor</span><span class="ml-sub">Read guest reviews</span></span><span class="ml-go">Open</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---- mobile nav ----
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('nav-open', open);
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.classList.remove('nav-open');
+    });
+  });
+
+  // ---- tide scroll progress ----
+  const tide = document.getElementById('tide');
+  function updateTide(){
+    const h = document.documentElement;
+    const scrollTop = h.scrollTop || document.body.scrollTop;
+    const scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    tide.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', updateTide, { passive:true });
+  updateTide();
+
+  // ---- menu tabs ----
+  const tabs = document.querySelectorAll('.menu-tab');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.setAttribute('aria-selected','true');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // ---- reveal on scroll: a tide wipe, once per element ----
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealTargets = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.16, rootMargin:'0px 0px -6% 0px' });
+    revealTargets.forEach(function(el){ io.observe(el); });
+
+    const revealGroups = document.querySelectorAll('.reveal-group');
+    const gio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); gio.unobserve(entry.target); }
+      });
+    }, { threshold:0.1 });
+    revealGroups.forEach(function(el){ gio.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ---- button ripple: a drop hitting water ----
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 1.2;
+      const span = document.createElement('span');
+      span.className = 'ripple';
+      span.style.width = span.style.height = size + 'px';
+      span.style.left = (e.clientX - rect.left - size/2) + 'px';
+      span.style.top = (e.clientY - rect.top - size/2) + 'px';
+      btn.appendChild(span);
+      window.setTimeout(function(){ span.remove(); }, 650);
+    });
+  });
+
+  // ---- magnetic pull on buttons, desktop pointer only ----
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+  if(finePointer && !reduceMotion){
+    document.querySelectorAll('.btn').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        const rect = btn.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width/2) * 0.18;
+        const y = (e.clientY - rect.top - rect.height/2) * 0.32;
+        btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+
+    // ---- shot tilt: a light 3D response to the cursor ----
+    document.querySelectorAll('[data-tilt]').forEach(function(card){
+      card.style.perspective = '700px';
+      card.addEventListener('mousemove', function(e){
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'rotateY(' + (px*7) + 'deg) rotateX(' + (py*-7) + 'deg)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    });
+
+    // ---- tide dot: a marker that follows the cursor within the hero chart ----
+    const chart = document.querySelector('.hero-chart');
+    const dot = document.getElementById('tideDot');
+    if(chart && dot){
+      chart.addEventListener('mousemove', function(e){
+        const rect = chart.getBoundingClientRect();
+        dot.style.left = (e.clientX - rect.left) + 'px';
+        dot.style.top = (e.clientY - rect.top) + 'px';
+        dot.style.opacity = '1';
+      });
+      chart.addEventListener('mouseleave', function(){ dot.style.opacity = '0'; });
+    }
+  }
+  // ---- social modal: opens in place of the old Linktree redirect ----
+  const backdrop = document.getElementById('socialBackdrop');
+  const panel = document.getElementById('socialPanel');
+  const closeBtn = document.getElementById('socialClose');
+  let lastFocused = null;
+
+  function openModal(){
+    lastFocused = document.activeElement;
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden','false');
+    document.body.classList.add('nav-open'); // reuse the scroll-lock
+    closeBtn.focus();
+  }
+  function closeModal(){
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden','true');
+    document.body.classList.remove('nav-open');
+    if(lastFocused) lastFocused.focus();
+  }
+  document.querySelectorAll('[data-social-open]').forEach(function(btn){
+    btn.addEventListener('click', openModal);
+  });
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e){
+    if(e.target === backdrop) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
+  });
+
+  // swipe the sheet down to dismiss, on touch devices
+  (function(){
+    let startY = 0, currentY = 0, dragging = false;
+    panel.addEventListener('touchstart', function(e){
+      if(window.innerWidth > 640) return;
+      startY = e.touches[0].clientY;
+      dragging = true;
+      panel.style.transition = 'none';
+    }, { passive:true });
+    panel.addEventListener('touchmove', function(e){
+      if(!dragging) return;
+      currentY = e.touches[0].clientY - startY;
+      if(currentY > 0) panel.style.transform = 'translateY(' + currentY + 'px)';
+    }, { passive:true });
+    panel.addEventListener('touchend', function(){
+      if(!dragging) return;
+      dragging = false;
+      panel.style.transition = '';
+      panel.style.transform = '';
+      if(currentY > 90) closeModal();
+      currentY = 0;
+    });
+  })();
+
+  // ---- swipe between menu tabs on touch devices ----
+  (function(){
+    const menuSection = document.getElementById('menu');
+    if(!menuSection) return;
+    const order = ['tapas','mains','sushi','drinks'];
+    let sx = 0, sy = 0;
+    menuSection.addEventListener('touchstart', function(e){
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive:true });
+    menuSection.addEventListener('touchend', function(e){
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if(Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      const activeTab = document.querySelector('.menu-tab[aria-selected="true"]');
+      if(!activeTab) return;
+      const idx = order.indexOf(activeTab.dataset.panel);
+      const next = dx < 0 ? idx + 1 : idx - 1;
+      if(next < 0 || next >= order.length) return;
+      document.querySelector('.menu-tab[data-panel="' + order[next] + '"]').click();
+    }, { passive:true });
+  })();
+})();
+</script>
+
+</body>
+</html>
